@@ -33,7 +33,7 @@ for(const{temperature, category, product1,product1PriceLevel, product2, product2
             let status = await app.payments.fillCreditCardForm(
                 fakePerson.email, 
                 process.env.CARD_NUMBER || '',
-                '1225',
+                process.env.EXPIRATION_DATE || '',
                 process.env.CVV
             )
             expect(status).toEqual(200)
