@@ -2,7 +2,6 @@ import { expect } from "@playwright/test"
 import {test} from "../test-options"
 import { getFakeUser } from "../utils/FakePerson"
 import { CosmeticStore } from "../interfaces/CosmeticStore"
-import { process } from "zod/v4/core"
 
 test.describe('Weather Shopper: Product Selection Logic', async()=>{
 

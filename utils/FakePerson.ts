@@ -1,4 +1,4 @@
-import {en, de, uk,en_US,Faker} from "@faker-js/faker"
+import {en, de, uk,Faker} from "@faker-js/faker"
 
 
 interface FakeUser {
