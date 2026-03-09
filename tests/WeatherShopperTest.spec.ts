@@ -2,6 +2,7 @@ import { expect } from "@playwright/test"
 import {test} from "../test-options"
 import { getFakeUser } from "../utils/FakePerson"
 import { CosmeticStore } from "../interfaces/CosmeticStore"
+import { process } from "zod/v4/core"
 
 test.describe('Weather Shopper: Product Selection Logic', async()=>{
 
@@ -28,7 +29,7 @@ for(const{temperature, category, product1,product1PriceLevel, product2, product2
         })
         await test.step('Checking the visibility of the purchased item and paying by credit card', async ()=>{
             expect(await app.checkoutPage.getContentOfTable(1)).toBeVisible()
-            expect(await app.checkoutPage.getContentOfTable(2)).toBeVisible()
+            expect.soft(await app.checkoutPage.getContentOfTable(2)).toBeVisible()
             await app.checkoutPage.buyViaCreditCard()
             let status = await app.payments.fillCreditCardForm(
                 fakePerson.email, 
@@ -41,7 +42,5 @@ for(const{temperature, category, product1,product1PriceLevel, product2, product2
         await test.step("Check Thank you page", async()=>{
             expect(await app.thankYouPage.getTitleText()).toEqual('PAYMENT SUCCESS')
         })
-    })
-}
-   
+    })}
 })

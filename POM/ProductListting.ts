@@ -1,4 +1,5 @@
 import { Locator, Page } from "playwright";
+import { PriceLevel } from "../interfaces/CosmeticStore";
 
 export class ProductsListing{
     private page: Page
@@ -11,7 +12,7 @@ export class ProductsListing{
         this.cart = page.locator("#cart")
     }
 
-    async addProductToCard(productName:string, price:'min'|'max'){
+    async addProductToCard(productName:string, price:PriceLevel){
         let allProductsLocators = await this.getAllProductsLocators(productName)
         let productPrices = await this.getListOfPrices(allProductsLocators)
         if (productPrices.length === 0) {
